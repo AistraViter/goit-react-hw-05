@@ -7,7 +7,7 @@ const MoviesList = ({ items }) => {
     <div>
       <ul className={css.moviesList}>
         {items.map((item) => (
-          <li key={item.id}>{<Link to="/" >{item.title}</Link>}</li>
+          <li key={item.id}>{<Link to="/movies/id" >{item.title}</Link>}</li>
         ))}
       </ul>
     </div>
