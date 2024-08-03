@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { fetchMovies } from "../../gallery-api";
+import { api } from "../../gallery-api";
 import MoviesList from "../../components/MoviesList/MoviesList";
 import Loader from "../../components/Loader/Loader";
 import css from "./HomePage.module.css";
@@ -15,7 +15,7 @@ function HomePage(errorMessage) {
       try {
         setLoading(true);
         setError(false);
-        const data = await fetchMovies(errorMessage);
+        const data = await api.fetchTrendMovies(errorMessage);
         setTrendingMovies(data.results);
         if (data.results.length === 0) {
           toast.error(

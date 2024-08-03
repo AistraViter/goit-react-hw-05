@@ -5,15 +5,13 @@ import Navigation from "./Navigation/Navigation";
 import "normalize.css";
 //  import css from "./App.module.css";
 
-function App(errorMessage) {
-
-
+function App(movies, errorMessage) {
   return (
     <div>
       {<Navigation />}
       <Routes>
-      <Route path="/" element={<HomePage errorMessage={errorMessage} />} />
-      <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/" element={<HomePage errorMessage={errorMessage} />} />
+        <Route path="/movies" element={<MoviesPage movies={movies} />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { fetchMovies } from "../../gallery-api";
+import { api } from "../../gallery-api";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import Loader from "../../components/Loader/Loader";
 import MoviesList from "../../components/MoviesList/MoviesList";
@@ -23,7 +23,7 @@ function MoviesPage() {
       try {
         setLoading(true);
         setError(false);
-        const data = await fetchMovies(topic, errorMessage);
+        const data = await api.fetchMovies(topic, errorMessage);
         setMovies((prevImages) => {
           return [...prevImages, ...data.results];
         });
@@ -52,6 +52,8 @@ function MoviesPage() {
       {loading && <Loader />}
       {error && <Toaster />}
       {movies.length > 0 && <MoviesList items={movies} />}
+      {console.log("Search movies:", movies)}
+
     </div>
   );
 }
