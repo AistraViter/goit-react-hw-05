@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../gallery-api";
+import api from "../../gallery-api"; 
 import SearchForm from "../../components/SearchForm/SearchForm";
 import Loader from "../../components/Loader/Loader";
 import MoviesList from "../../components/MoviesList/MoviesList";

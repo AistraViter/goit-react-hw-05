@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../gallery-api";
+import api from "../../gallery-api"; 
 import MoviesList from "../../components/MoviesList/MoviesList";
 import Loader from "../../components/Loader/Loader";
 import css from "./HomePage.module.css";
@@ -30,7 +30,7 @@ function HomePage(errorMessage) {
             "Oops! An error occurred while fetching the movies. Please try again!"
         );
       } finally {
-      setLoading(false);
+        setLoading(false);
       }
     }
     getMovies();
@@ -41,7 +41,7 @@ function HomePage(errorMessage) {
       {console.log("Movies:", trendingMovies)}
       <h2>Trending today</h2>
       {loading && <Loader />}
-      {trendingMovies.length > 0 && <MoviesList items={trendingMovies} />} 
+      {trendingMovies.length > 0 && <MoviesList items={trendingMovies} />}
       {error && <Toaster />}
     </div>
   );
