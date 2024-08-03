@@ -1,4 +1,4 @@
-import css from "./MoviesList.module.css";
+import css from "./MovieList.module.css";
 
 const MoviesList = ({ items }) => {
   return (
