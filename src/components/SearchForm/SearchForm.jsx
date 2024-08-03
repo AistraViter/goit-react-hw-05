@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchForm.module.css";
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
   const initialValues = {
     topic: "",
   };
@@ -12,15 +12,15 @@ function SearchForm() {
       toast.error("Please enter search term!");
       return;
     }
-
+    onSearch(values.topic);
     actions.resetForm();
   };
 
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {() => (
-          <Form className={css.searchForm}>
+      {({ handleSubmit }) => (
+          <Form className={css.searchForm} onSubmit={handleSubmit}>
             <Field type="text" name="topic" placeholder="Search movies..." />
             <button type="submit">Search</button>
           </Form>
