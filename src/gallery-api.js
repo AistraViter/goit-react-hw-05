@@ -24,7 +24,7 @@ const api = {
     return data;
   },
 
-  async fetchMovieDetails(movie_id) {
+  async fetchMovieById(movie_id) {
     const { data } = await axios.get(`/3/movie/${movie_id}`, {
       params: {
         api_key: API_KEY,
