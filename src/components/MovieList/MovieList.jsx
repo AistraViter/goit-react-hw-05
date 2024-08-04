@@ -15,4 +15,3 @@ const MoviesList = ({ items }) => {
 };
 export default MoviesList;
 
-// href={`/movies/${item.poster_path}`}

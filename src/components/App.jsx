@@ -9,17 +9,15 @@ import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import "normalize.css";
 //  import css from "./App.module.css";
 
-function App({ movies, errorMessage }) { // Приймаємо props як об'єкт
+function App({ movies, errorMessage }) {
+  // Приймаємо props як об'єкт
   return (
     <div>
       {<Navigation />}
       <Routes>
         <Route path="/" element={<HomePage errorMessage={errorMessage} />} />
         <Route path="/movies" element={<MoviesPage movies={movies} />} />
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />} >
-          <Route path="credits" element={<MovieCast />} />
-          <Route path="reviews" element={<MovieReviews />} />
-        </Route>
+        <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

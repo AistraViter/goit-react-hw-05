@@ -18,6 +18,11 @@
     flex-direction: row;
   }
 }
+.movieInfoContainer img {
+  width: 100%; /* Або встановіть бажану ширину */
+  height: auto;
+  object-fit: cover; /* Може бути також 'contain', залежно від потреб */
+}
 
 .movieDetailsPage h3 {
   margin: 0;

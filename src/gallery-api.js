@@ -32,7 +32,29 @@ const api = {
     });
     return data;
   },
+
+  async fetchMovieCast(movie_id) {
+    const { data } = await axios.get(`/3/movie/${movie_id}/credits`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return data;
+  },
+
+  async fetchMovieRevievs(movie_id) {
+    const { data } = await axios.get(`/3/movie/${movie_id}/reviews`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return data;
+  },
+
+  
+
 };
+
 
 
 
