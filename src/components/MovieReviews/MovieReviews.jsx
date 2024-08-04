@@ -1,10 +1,22 @@
 import css from "./MovieReviews.module.css";
 
-function MovieReviews() {
+function MovieReviews({ items }) {
   return (
     <div className={css.movieReviews}>
-      {console.log("MovieReviews:")}
-      <h3>Відгуки</h3>
+      {items && items.length > 0 ? (
+        <ul>
+          {items.map((item) => (
+            <li key={item.id}>
+              <p>
+                <span> {item.author} </span> <br />
+                {item.content}
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No reviews for this movie.</p>
+      )}
     </div>
   );
 }

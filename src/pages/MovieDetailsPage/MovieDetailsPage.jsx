@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { NavLink, Link, Outlet, useParams } from "react-router-dom";
+import { NavLink, Link, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import MovieCast from "../../components/MovieCast/MovieCast";
+import MovieReviews from "../../components/MovieReviews/MovieReviews";
 import api from "../../gallery-api";
 import css from "./MovieDetailsPage.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -19,10 +20,13 @@ function MovieDetailsPage(errorMessage) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movieCast, setMovieCast] = useState([]);
+  const [movieReviews, setMovieReviews] = useState([]);
 
   useEffect(() => {
     async function getMovieById() {
       try {
+        setLoading(true);
+        setError(false);
         const data = await api.fetchMovieById(movieId, errorMessage);
         setMovieInfo(data);
       } catch (error) {
@@ -41,6 +45,8 @@ function MovieDetailsPage(errorMessage) {
   useEffect(() => {
     async function getMovieCast() {
       try {
+        setLoading(true);
+        setError(false);
         const data = await api.fetchMovieCast(movieId, errorMessage);
         setMovieCast(data.cast);
       } catch (error) {
@@ -56,6 +62,25 @@ function MovieDetailsPage(errorMessage) {
     getMovieCast();
   }, [movieId, errorMessage]);
 
+  useEffect(() => {
+    async function getMovieReviews() {
+      try {
+        setLoading(true);
+        setError(false);
+        const data = await api.fetchMovieReviews(movieId, errorMessage);
+        setMovieReviews(data.results);
+      } catch (error) {
+        setError(true);
+        toast.error(
+          errorMessage ||
+            "Oops! An error occurred while fetching the movie's reviews. Please try again!"
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+    getMovieReviews();
+  }, [movieId, errorMessage]);
 
   return (
     movieInfo && (
@@ -84,16 +109,28 @@ function MovieDetailsPage(errorMessage) {
 
         <h4>Addtional information</h4>
         <ul>
-          <li> {<NavLink to="credits" className={detailsItem} >Cast</NavLink>}</li>
-          <li> {<NavLink to="reviews" className={detailsItem}>Reviews</NavLink>}</li>
+          <li>
+            {
+              <NavLink to="credits" className={detailsItem}>
+                Cast
+              </NavLink>
+            }
+          </li>
+          <li>
+            {
+              <NavLink to="reviews" className={detailsItem}>
+                Reviews
+              </NavLink>
+            }
+          </li>
         </ul>
-
-        {movieCast.length > 0 && console.log({ movieCast })}
-
         {movieCast.length > 0 && (
           <Routes>
             <Route path="credits" element={<MovieCast items={movieCast} />} />
-            <Route path="reviews" element={<Outlet />} />
+            <Route
+              path="reviews"
+              element={<MovieReviews items={movieReviews} />}
+            />
           </Routes>
         )}
         {error && <Toaster />}
@@ -107,5 +144,3 @@ export default MovieDetailsPage;
 {
   /* <Outlet context={movieCast.length > 0 ? movieCast : null} /> */
 }
-
-

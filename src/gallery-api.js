@@ -42,7 +42,7 @@ const api = {
     return data;
   },
 
-  async fetchMovieRevievs(movie_id) {
+  async fetchMovieReviews(movie_id) {
     const { data } = await axios.get(`/3/movie/${movie_id}/reviews`, {
       params: {
         api_key: API_KEY,
@@ -50,9 +50,6 @@ const api = {
     });
     return data;
   },
-
-  
-
 };
 
 
