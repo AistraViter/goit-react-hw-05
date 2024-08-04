@@ -1,0 +1,42 @@
+.movieDetailsPage {
+  padding: 40px;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+.movieDetailsPage h3 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.movieDetailsPage h4 {
+  margin: 40px 0 0 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.movieDetailsPage p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.movieDetailsPage ul {
+  margin: 20px;
+  padding: 0;
+}
+
+.movieDetailsPage a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: black;
+  text-decoration: none;
+}
+.movieDetailsPage a:hover {
+  text-decoration: underline;
+}
+.movieDetailsPage a:active {
+  text-decoration: underline;
+  color: rgb(255, 0, 166);
+}

@@ -1,17 +1,30 @@
+import { Link } from "react-router-dom";
+import css from "./MovieDetailsPage.module.css";
+
 function MovieDetailsPage() {
   return (
-    <div>
+    <div className={css.movieDetailsPage}>
+      <div> </div>
       <h3>The Lion King (2019)</h3>
       <p>User Score: 90%</p>
       <h4>Overview</h4>
-      <p>Adventure Animation Drama</p>
+      <p>
+        Студія Marvel представляє свою найприкрішу помилку на сьогоднішній день
+        – «Дедпул і Росомаха». Безпорадний Вейд Вілсон тяжко трудиться у
+        цивільному житті. Його дні як найманця з гнучкими моральними орієнтирами
+        Дедпула позаду. Коли його рідний світ стикається зі Среальною загрозою,
+        Вейд неохоче знову вдягає костюм, як і значно більш неохочий…
+        неохочіший? Найнеохочіший? Він повинен розвести упертого Росомаху на
+        сек...Секундочку, ці синопсиси такі тупі...
+      </p>
+
       <h4>Genres</h4>
+      <p>Adventure Animation Drama</p>
 
       <h4>Addtional information</h4>
-
       <ul>
-        <li> Cast</li>
-        <li> Reviews</li>
+        <li> {<Link to="/">Cast</Link>}</li>
+        <li> {<Link to="/">Reviews</Link>}</li>
       </ul>
     </div>
   );
