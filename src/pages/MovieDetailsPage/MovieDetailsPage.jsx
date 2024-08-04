@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { NavLink, Link, Outlet, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import api from "../../gallery-api";
@@ -59,9 +59,11 @@ function MovieDetailsPage(errorMessage) {
 
         <h4>Addtional information</h4>
         <ul>
-          <li> {<Link to="/">Cast</Link>}</li>
-          <li> {<Link to="/">Reviews</Link>}</li>
+          <li> {<NavLink to="credits">Cast</NavLink>}</li>
+          <li> {<NavLink to="reviews">Reviews</NavLink>}</li>
         </ul>
+        <Outlet />
+
         {error && <Toaster />}
 
       </div>
