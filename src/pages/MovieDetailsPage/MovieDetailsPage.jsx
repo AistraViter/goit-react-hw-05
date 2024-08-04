@@ -34,7 +34,6 @@ function MovieDetailsPage(errorMessage) {
   return (
     movieInfo && (
       <div className={css.movieDetailsPage}>
-        {console.log("getMovieById:", movieInfo)}
         {loading && <Loader />}
         <Link to="/" className={css.goBack}>
           <FaArrowLeftLong /> Go back

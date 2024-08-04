@@ -38,7 +38,6 @@ function HomePage(errorMessage) {
 
   return (
     <div className={css.homePage}>
-      {console.log("Movies:", trendingMovies)}
       <h2>Trending today</h2>
       {loading && <Loader />}
       {trendingMovies.length > 0 && <MoviesList items={trendingMovies} />}

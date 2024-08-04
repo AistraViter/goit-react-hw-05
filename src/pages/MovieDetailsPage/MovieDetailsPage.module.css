@@ -9,8 +9,16 @@
 .movieInfoContainer {
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   gap: 40px;
 }
+
+@media (min-width: 768px) {
+  .movieInfoContainer {
+    flex-direction: row;
+  }
+}
+
 .movieDetailsPage h3 {
   margin: 0;
   font-size: 40px;
@@ -46,5 +54,3 @@
   text-decoration: underline;
   color: rgb(255, 0, 166);
 }
-
-

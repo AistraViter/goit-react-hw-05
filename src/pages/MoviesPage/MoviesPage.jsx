@@ -45,7 +45,6 @@ function MoviesPage({ errorMessage }) {
       {loading && <Loader />}
       {error && <Toaster />}
       {movies.length > 0 && <MoviesList items={movies} />}
-      {console.log("Search movies:", movies)}
     </div>
   );
 }
