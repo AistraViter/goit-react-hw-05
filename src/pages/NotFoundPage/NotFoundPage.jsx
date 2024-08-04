@@ -7,7 +7,7 @@ function NotFoundPage() {
   return (
     <div className={css.notFoundPage}>
       <Link to="/" className={css.goBack}>
-        <FaArrowLeftLong /> Go back
+        <FaArrowLeftLong /> Go to home page
       </Link>
       <h2>Sorry, this page is not found</h2>
     </div>
