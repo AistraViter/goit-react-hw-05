@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import css from "./MovieDetailsPage.module.css";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 function MovieDetailsPage() {
   return (
     <div className={css.movieDetailsPage}>
       <div> </div>
+      <Link to="/" className={css.goBack}> <FaArrowLeftLong /> Go back</Link>
       <h3>The Lion King (2019)</h3>
       <p>User Score: 90%</p>
       <h4>Overview</h4>
