@@ -45,17 +45,32 @@
   padding: 0;
 }
 
-.movieDetailsPage a {
+.link {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: black;
   text-decoration: none;
 }
-.movieDetailsPage a:hover {
+.link:hover {
   text-decoration: underline;
 }
-.movieDetailsPage a:active {
+.active {
+  color: rgb(255, 0, 166);
+}
+
+.goBack {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: black;
+  text-decoration: none;
+}
+.goBack:hover {
+  text-decoration: underline;
+}
+.goBack:active {
   text-decoration: underline;
   color: rgb(255, 0, 166);
 }
+

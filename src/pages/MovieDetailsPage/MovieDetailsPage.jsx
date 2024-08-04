@@ -7,6 +7,11 @@ import MovieCast from "../../components/MovieCast/MovieCast";
 import api from "../../gallery-api";
 import css from "./MovieDetailsPage.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import clsx from "clsx";
+
+const detailsItem = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
 
 function MovieDetailsPage(errorMessage) {
   const { movieId } = useParams();
@@ -51,6 +56,7 @@ function MovieDetailsPage(errorMessage) {
     getMovieCast();
   }, [movieId, errorMessage]);
 
+
   return (
     movieInfo && (
       <div className={css.movieDetailsPage}>
@@ -78,8 +84,8 @@ function MovieDetailsPage(errorMessage) {
 
         <h4>Addtional information</h4>
         <ul>
-          <li> {<NavLink to="credits">Cast</NavLink>}</li>
-          <li> {<NavLink to="reviews">Reviews</NavLink>}</li>
+          <li> {<NavLink to="credits" className={detailsItem} >Cast</NavLink>}</li>
+          <li> {<NavLink to="reviews" className={detailsItem}>Reviews</NavLink>}</li>
         </ul>
 
         {movieCast.length > 0 && console.log({ movieCast })}
