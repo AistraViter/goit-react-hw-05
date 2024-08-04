@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import css from "./MovieDetailsPage.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 function MovieDetailsPage() {
+  const { movieId } = useParams();
+
   return (
     <div className={css.movieDetailsPage}>
-      <div> </div>
-      <Link to="/" className={css.goBack}> <FaArrowLeftLong /> Go back</Link>
+      <div>Now showing product with id - {movieId}</div>
+      <Link to="/" className={css.goBack}>
+        <FaArrowLeftLong /> Go back
+      </Link>
       <h3>The Lion King (2019)</h3>
       <p>User Score: 90%</p>
       <h4>Overview</h4>
@@ -19,10 +23,8 @@ function MovieDetailsPage() {
         неохочіший? Найнеохочіший? Він повинен розвести упертого Росомаху на
         сек...Секундочку, ці синопсиси такі тупі...
       </p>
-
       <h4>Genres</h4>
       <p>Adventure Animation Drama</p>
-
       <h4>Addtional information</h4>
       <ul>
         <li> {<Link to="/">Cast</Link>}</li>

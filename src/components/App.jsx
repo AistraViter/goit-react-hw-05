@@ -13,7 +13,7 @@ function App(movies, errorMessage) {
       <Routes>
         <Route path="/" element={<HomePage errorMessage={errorMessage} />} />
         <Route path="/movies" element={<MoviesPage movies={movies} />} />
-        <Route path="/movies/id" element={<MovieDetailsPage/>} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage/>} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </div>
