@@ -5,7 +5,7 @@ import MoviesList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
 import css from "./HomePage.module.css";
 
-function HomePage(errorMessage) {
+function HomePage({ errorMessage }) { 
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -15,7 +15,7 @@ function HomePage(errorMessage) {
       try {
         setLoading(true);
         setError(false);
-        const data = await api.fetchTrendMovies(errorMessage);
+        const data = await api.fetchTrendMovies();
         setTrendingMovies(data.results);
         if (data.results.length === 0) {
           toast.error(
