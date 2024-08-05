@@ -4,8 +4,6 @@ import css from "./MovieCast.module.css";
 function MovieCast({ items }) {
   return (
     <div className={css.movieCast}>
-            {console.log("Значення items: ", items)}
-
       {items.length > 0 ? (
         <ul>
           {items.map((item) => (
@@ -23,7 +21,3 @@ function MovieCast({ items }) {
 
 export default MovieCast;
 
-
-{/* <h3>Акторський склад</h3>
-
-{console.log("Довжина items: ", items.length)} */}
