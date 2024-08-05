@@ -125,7 +125,7 @@ function MovieDetailsPage(errorMessage) {
         <ul>
           <li>
             {
-              <NavLink to="credits" className={detailsItem}>
+              <NavLink to="cast" className={detailsItem}>
                 Cast
               </NavLink>
             }
@@ -141,7 +141,7 @@ function MovieDetailsPage(errorMessage) {
         {movieCast.length > 0 && (
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route path="credits" element={<MovieCast items={movieCast} />} />
+              <Route path="cast" element={<MovieCast items={movieCast} />} />
               <Route
                 path="reviews"
                 element={<MovieReviews items={movieReviews} />}
