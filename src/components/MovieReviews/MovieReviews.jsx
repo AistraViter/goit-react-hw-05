@@ -39,11 +39,11 @@ function MovieReviews() {
       {error && <Toaster />}
       {reviews && reviews.length > 0 ? (
         <ul>
-          {reviews.map((review) => (
-            <li key={review.id}>
+          {reviews.map(({ id, author, content }) => (
+            <li key={id}>
               <p>
-                <span> {review.author} </span> <br />
-                {review.content}
+                <span> {author} </span> <br />
+                {content}
               </p>
             </li>
           ))}
