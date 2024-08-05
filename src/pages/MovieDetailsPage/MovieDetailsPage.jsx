@@ -1,13 +1,23 @@
+import { lazy, Suspense } from "react";
 import { useState, useEffect, useRef } from "react";
-import { NavLink, Link, useParams, useLocation, Routes, Route } from "react-router-dom";
+import {
+  NavLink,
+  Link,
+  useParams,
+  useLocation,
+  Routes,
+  Route,
+} from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
-import MovieCast from "../../components/MovieCast/MovieCast";
-import MovieReviews from "../../components/MovieReviews/MovieReviews";
 import api from "../../gallery-api";
 import css from "./MovieDetailsPage.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import clsx from "clsx";
+const MovieCast = lazy(() => import("../../components/MovieCast/MovieCast"));
+const MovieReviews = lazy(() =>
+  import("../../components/MovieReviews/MovieReviews")
+);
 
 const detailsItem = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -21,9 +31,9 @@ function MovieDetailsPage(errorMessage) {
   const [error, setError] = useState(false);
   const [movieCast, setMovieCast] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
-  const backLinkHref = useRef (location.state ?? "/movies")
+  const backLinkHref = useRef(location.state ?? "/movies");
 
-  console.log(location)
+  console.log(location);
 
   useEffect(() => {
     async function getMovieById() {
@@ -36,7 +46,7 @@ function MovieDetailsPage(errorMessage) {
         setError(true);
         toast.error(
           errorMessage ||
-            "Oops! An error occurred while fetching the movie information. Please try again!"
+          "Oops! An error occurred while fetching the movie information. Please try again!"
         );
       } finally {
         setLoading(false);
@@ -56,7 +66,7 @@ function MovieDetailsPage(errorMessage) {
         setError(true);
         toast.error(
           errorMessage ||
-            "Oops! An error occurred while fetching the movie's cast. Please try again!"
+          "Oops! An error occurred while fetching the movie's cast. Please try again!"
         );
       } finally {
         setLoading(false);
@@ -76,7 +86,7 @@ function MovieDetailsPage(errorMessage) {
         setError(true);
         toast.error(
           errorMessage ||
-            "Oops! An error occurred while fetching the movie's reviews. Please try again!"
+          "Oops! An error occurred while fetching the movie's reviews. Please try again!"
         );
       } finally {
         setLoading(false);
@@ -129,13 +139,15 @@ function MovieDetailsPage(errorMessage) {
           </li>
         </ul>
         {movieCast.length > 0 && (
-          <Routes>
-            <Route path="credits" element={<MovieCast items={movieCast} />} />
-            <Route
-              path="reviews"
-              element={<MovieReviews items={movieReviews} />}
-            />
-          </Routes>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="credits" element={<MovieCast items={movieCast} />} />
+              <Route
+                path="reviews"
+                element={<MovieReviews items={movieReviews} />}
+              />
+            </Routes>
+          </Suspense>
         )}
         {error && <Toaster />}
       </div>
@@ -144,7 +156,3 @@ function MovieDetailsPage(errorMessage) {
 }
 
 export default MovieDetailsPage;
-
-{
-  /* <Outlet context={movieCast.length > 0 ? movieCast : null} /> */
-}

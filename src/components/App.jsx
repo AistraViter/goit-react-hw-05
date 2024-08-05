@@ -1,25 +1,26 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
-import HomePage from "../pages/HomePage/HomePage";
-import MoviesPage from "../pages/MoviesPage/MoviesPage";
-import MovieDetailsPage from "../pages/MovieDetailsPage/MovieDetailsPage";
-// import MovieCast from "./MovieCast/MovieCast";
-// import MovieReviews from "./MovieReviews/MovieReviews";
-import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import "normalize.css";
-//  import css from "./App.module.css";
+const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("../pages/MoviesPage/MoviesPage"));
+const MovieDetailsPage = lazy(() => import("../pages/MovieDetailsPage/MovieDetailsPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+
+
 
 function App({ movies, errorMessage }) {
-  // Приймаємо props як об'єкт
   return (
     <div>
       {<Navigation />}
+      <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<HomePage errorMessage={errorMessage} />} />
         <Route path="/movies" element={<MoviesPage movies={movies} />} />
         <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </Suspense>
     </div>
   );
 }
