@@ -1,6 +1,5 @@
-import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { NavLink, Link, useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { NavLink, Link, useParams, useLocation, Routes, Route } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import MovieCast from "../../components/MovieCast/MovieCast";
@@ -16,11 +15,15 @@ const detailsItem = ({ isActive }) => {
 
 function MovieDetailsPage(errorMessage) {
   const { movieId } = useParams();
+  const location = useLocation();
   const [movieInfo, setMovieInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movieCast, setMovieCast] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
+  const backLinkHref = useRef (location.state ?? "/movies")
+
+  console.log(location)
 
   useEffect(() => {
     async function getMovieById() {
@@ -86,7 +89,8 @@ function MovieDetailsPage(errorMessage) {
     movieInfo && (
       <div className={css.movieDetailsPage}>
         {loading && <Loader />}
-        <Link to="/" className={css.goBack}>
+
+        <Link to={backLinkHref.current} className={css.goBack}>
           <FaArrowLeftLong /> Go back
         </Link>
         <div className={css.movieInfoContainer}>
