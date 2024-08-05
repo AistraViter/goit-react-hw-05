@@ -1,12 +1,11 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import { useState, useEffect, useRef } from "react";
 import {
   NavLink,
   Link,
   useParams,
   useLocation,
-  Routes,
-  Route,
+  Outlet
 } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
@@ -14,10 +13,6 @@ import api from "../../gallery-api";
 import css from "./MovieDetailsPage.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import clsx from "clsx";
-const MovieCast = lazy(() => import("../../components/MovieCast/MovieCast"));
-const MovieReviews = lazy(() =>
-  import("../../components/MovieReviews/MovieReviews")
-);
 
 const detailsItem = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -96,13 +91,7 @@ function MovieDetailsPage(errorMessage) {
           </li>
         </ul>
           <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route path="cast" element={<MovieCast/>} />
-              <Route
-                path="reviews"
-                element={<MovieReviews />}
-              />
-            </Routes>
+          <Outlet/>
           </Suspense>
      
         {error && <Toaster />}
