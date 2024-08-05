@@ -1,6 +1,7 @@
 import css from "./MovieReviews.module.css";
 
 function MovieReviews({ items }) {
+  
   return (
     <div className={css.movieReviews}>
       {items && items.length > 0 ? (
