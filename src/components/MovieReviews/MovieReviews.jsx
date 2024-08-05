@@ -1,22 +1,55 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import Loader from "../Loader/Loader";
+import api from "../../gallery-api";
 import css from "./MovieReviews.module.css";
 
-function MovieReviews({ items }) {
-  
+function MovieReviews() {
+  const { movieId } = useParams(); // Отримуємо movieId з параметрів маршруту
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    async function getMovieReviews() {
+      try {
+        setLoading(true);
+        setError(false);
+        const data = await api.fetchMovieReviews(movieId);
+        setReviews(data.results);
+        if (data.results.length === 0) {
+          toast.error("No reviews for this movie.");
+        }
+      } catch (error) {
+        setError(true);
+        toast.error(
+          "Oops! An error occurred while fetching the reviews. Please try again!"
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+    getMovieReviews();
+  }, [movieId]);
+
   return (
     <div className={css.movieReviews}>
-      {items && items.length > 0 ? (
+      {loading && <Loader />}
+      {error && <Toaster />}
+      {reviews && reviews.length > 0 ? (
         <ul>
-          {items.map((item) => (
-            <li key={item.id}>
+          {reviews.map((review) => (
+            <li key={review.id}>
               <p>
-                <span> {item.author} </span> <br />
-                {item.content}
+                <span> {review.author} </span> <br />
+                {review.content}
               </p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No reviews for this movie.</p>
+        !loading && <p>No reviews for this movie.</p>
       )}
     </div>
   );

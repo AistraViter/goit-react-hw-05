@@ -30,7 +30,6 @@ function MovieDetailsPage(errorMessage) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movieCast, setMovieCast] = useState([]);
-  const [movieReviews, setMovieReviews] = useState([]);
   const backLinkHref = useRef(location.state ?? "/movies");
 
   useEffect(() => {
@@ -73,27 +72,7 @@ function MovieDetailsPage(errorMessage) {
     getMovieCast();
   }, [movieId, errorMessage]);
 
-  useEffect(() => {
-    async function getMovieReviews() {
-      try {
-        setLoading(true);
-        setError(false);
-        const data = await api.fetchMovieReviews(movieId, errorMessage);
-        setMovieReviews(data.results);
-      } catch (error) {
-        setError(true);
-        toast.error(
-          errorMessage ||
-          "Oops! An error occurred while fetching the movie's reviews. Please try again!"
-        );
-      } finally {
-        setLoading(false);
-      }
-    }
-    getMovieReviews();
-  }, [movieId, errorMessage]);
-
-  return (
+   return (
     movieInfo && (
       <div className={css.movieDetailsPage}>
         {loading && <Loader />}
@@ -142,7 +121,7 @@ function MovieDetailsPage(errorMessage) {
               <Route path="cast" element={<MovieCast items={movieCast} />} />
               <Route
                 path="reviews"
-                element={<MovieReviews items={movieReviews} />}
+                element={<MovieReviews />}
               />
             </Routes>
           </Suspense>
