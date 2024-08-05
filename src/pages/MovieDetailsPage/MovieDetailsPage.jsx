@@ -33,8 +33,6 @@ function MovieDetailsPage(errorMessage) {
   const [movieReviews, setMovieReviews] = useState([]);
   const backLinkHref = useRef(location.state ?? "/movies");
 
-  console.log(location);
-
   useEffect(() => {
     async function getMovieById() {
       try {
