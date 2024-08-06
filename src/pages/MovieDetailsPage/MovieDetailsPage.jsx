@@ -18,7 +18,7 @@ const detailsItem = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
 
-function MovieDetailsPage(errorMessage) {
+function MovieDetailsPage({errorMessage}) {
   const { movieId } = useParams();
   const location = useLocation();
   const [movieInfo, setMovieInfo] = useState(null);
@@ -36,7 +36,6 @@ function MovieDetailsPage(errorMessage) {
       } catch (error) {
         setError(true);
         toast.error(
-          errorMessage ||
           "Oops! An error occurred while fetching the movie information. Please try again!"
         );
       } finally {
