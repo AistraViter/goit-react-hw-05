@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import api from "../../gallery-api";
 import SearchForm from "../../components/SearchForm/SearchForm";
@@ -10,14 +11,15 @@ function MoviesPage({ errorMessage }) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("query") || "";
 
   const handleSearch = (topic) => {
     if (!topic) {
       toast.error(errorMessage || "Please enter search term!");
       return;
     }
-    setSearchQuery(topic);
+    setSearchParams({ query: topic });
   };
 
   useEffect(() => {
